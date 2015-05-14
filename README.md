@@ -1,7 +1,9 @@
 # CommonComponents(web开发组件)
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 [![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
+[![Build Status](https://travis-ci.org/chinakids/CommonComponents.svg?branch=master)](https://travis-ci.org/chinakids/CommonComponents)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 开发用公共组件库
 
