@@ -1,0 +1,19 @@
+{
+  "name": "CommonComponents",
+  "version": "0.0.1",
+  "homepage": "https://github.com/chinakids/CommonComponents",
+  "authors": [
+    "chinakids <494063570@qq.com>",
+    "saymy <122279907@qq.com>"
+  ],
+  "description": "web dev common components",
+  "main": "environment/environment.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
