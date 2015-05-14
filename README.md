@@ -1,5 +1,8 @@
 # CommonComponents(web开发组件)
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![npm version](https://badge.fury.io/js/engine.io.svg)](http://badge.fury.io/js/engine.io)
+
 开发用公共组件库
 
 ###1.安装
@@ -9,7 +12,9 @@ Install: `bower install https://github.com/chinakids/CommonComponents.git --save
 
 ###2.Environment（浏览器环境检测）
 
-src:environment/environment.js
+src:`src/environment/environment.js`
+
+dest:`src/environment/environment.min.js`
 
 
 使用：
