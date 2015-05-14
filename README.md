@@ -1,8 +1,13 @@
-# CommonComponents
+# CommonComponents(web开发组件)
 
 开发用公共组件库
 
-###1.environment（浏览器环境检测）
+###1.安装
+
+Install: `bower install https://github.com/chinakids/CommonComponents.git --save`
+
+
+###2.Environment（浏览器环境检测）
 
 src:environment/environment.js
 
