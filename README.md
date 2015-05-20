@@ -40,7 +40,7 @@ dest:`src/environment/environment.min.js`
 			userlanguage: undefined,
 			version: "5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36"
 			}
-		info:{ 
+		info:{
 			Objectbrowser: "Chrome",
 			browserversion: "41.0.2272.76",
 			device: "pc",
