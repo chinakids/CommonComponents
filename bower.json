@@ -7,7 +7,7 @@
     "saymy <122279907@qq.com>"
   ],
   "description": "web dev common components",
-  "main": "dest/environment/environment.js",
+  "main": "src/environment/environment.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
