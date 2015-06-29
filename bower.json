@@ -8,7 +8,7 @@
     "lh2907883 <lihao12518@163.com>"
   ],
   "description": "web dev common components",
-  "main": "src/environment/environment.js",
+  "main": "",
   "license": "MIT",
   "ignore": [
     "**/.*",
