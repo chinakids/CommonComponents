@@ -16,7 +16,6 @@ Install: `bower install https://github.com/chinakids/CommonComponents.git --save
 
 src:`src/environment/environment.js`
 
-dest:`src/environment/environment.min.js`
 
 
 使用：
