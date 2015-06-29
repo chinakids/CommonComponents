@@ -52,3 +52,28 @@ dest:`src/environment/environment.min.js`
 			systemversion: ""
 			}
 	}
+
+
+###3.autoComplete (基于juqery的自动联想插件)
+
+src:`src/autoComplete/autoComplete.js`, `src/autoComplete/autoComplete.css`
+
+使用：
+	
+	var emailSource = ["sina.com", "163.com", "qq.com", "126.com", "vip.sina.com", "sina.cn", "hotmail.com", "gmail.com", "sodu.com", "139.com", "wo.com.cn", "189.cn", "21cn.com"];
+	$("#login_acc_user").autoComplete({
+      //maxHeight: 200,
+      minWidth: 250,
+	  //表示在输入@符号时激活自动联想菜单
+	  checkActiveCallback: function(inputValue){
+	    return /^[^@\s]+@$/.test(inputValue);
+	  },
+	  //在每次激活时都会调用这个方法获取数据源,使用e.source来设置数据源
+	  getSourceCallback: function(inputValue, e){
+	    e.source($.map(emailSource, function(item){
+	      return inputValue + item;
+	    }), false);
+	  }
+	});
+
+	
