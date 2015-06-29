@@ -4,7 +4,8 @@
   "homepage": "https://github.com/chinakids/CommonComponents",
   "authors": [
     "chinakids <494063570@qq.com>",
-    "saymy <122279907@qq.com>"
+    "saymy <122279907@qq.com>",
+    "lh2907883 <lihao12518@163.com>"
   ],
   "description": "web dev common components",
   "main": "src/environment/environment.js",
