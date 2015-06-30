@@ -55,7 +55,7 @@ src:`src/environment/environment.js`
 
 ###3.autoComplete (基于juqery的自动联想插件)
 
-src:`src/autoComplete/autoComplete.js`, `src/autoComplete/autoComplete.css`
+src:`src/autoComplete/autoComplete.js`
 
 使用：
 	

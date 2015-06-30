@@ -84,6 +84,7 @@
     beforeShowCallback: undefined //function(inputValue){}
   };
   $.fn.autoComplete.api = function(option, $input){
+    option = $.extend({}, $.fn.autoComplete.defaultOption, option);
     var _this = this;
     /**
      * 获取上下padding和边框总和
@@ -230,6 +231,7 @@
    */
   $.fn.autoComplete.getMenu = function(){
     if(!$.fn.autoComplete.getMenu.menu){
+      $("head").append('<style type="text/css">.autoComplete{position:absolute;border:1px solid #ccc;z-index:9999;background-color:#fff;overflow-y:auto;overflow-x:hidden}.autoComplete .head,.autoComplete .item{padding:5px;padding-right:20px}.autoComplete .item.active,.autoComplete .item:hover{background-color:#f1f6fa;cursor:pointer} </style>');
       $.fn.autoComplete.getMenu.menu = $('<div class="autoComplete" style="display:none;"></div>').appendTo('body')
         .delegate("div.item", "mousedown", function(){
           var api = $.fn.autoComplete.getMenu().data("_autoComplete_api");
