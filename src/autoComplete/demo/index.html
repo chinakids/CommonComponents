@@ -5,7 +5,6 @@
     <title>autoComplete demo</title>
     <meta name="description" content="">
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../autoComplete.css">
   </head>  
   <body>
     <div style="float:left; width:230px;margin: 30px;">
@@ -18,23 +17,31 @@
       /**
        * 邮箱快速选择(自动联想)
        */
+      // $("#login").autoComplete({
+      //   //maxHeight: 200,
+      //   minWidth: 250,
+      //   checkActiveCallback: function(inputValue){
+      //     return /^[^@\s]+@([^@\s]*)$/.test(inputValue);
+      //   },
+      //   getSourceCallback: function(inputValue, e){
+      //     var m = inputValue.match(/^([^@\s]+@)([^@\s]*)$/);
+      //     if(m){
+      //       var v = m[1]
+      //       var rex = m[2];
+      //       e.source($.map(emailSource, function(item){
+      //         if(item.indexOf(rex) == 0){
+      //           return v + item;
+      //         }
+      //       }), false);
+      //     }        
+      //   }
+      // });
+
       $("#login").autoComplete({
-        //maxHeight: 200,
+        minLength: 1,
         minWidth: 250,
-        checkActiveCallback: function(inputValue){
-          return /^[^@\s]+@([^@\s]*)$/.test(inputValue);
-        },
         getSourceCallback: function(inputValue, e){
-          var m = inputValue.match(/^([^@\s]+@)([^@\s]*)$/);
-          if(m){
-            var v = m[1]
-            var rex = m[2];
-            e.source($.map(emailSource, function(item){
-              if(item.indexOf(rex) == 0){
-                return v + item;
-              }
-            }), false);
-          }        
+          e.source(emailSource);
         }
       });
     </script>
