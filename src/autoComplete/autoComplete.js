@@ -130,13 +130,18 @@
                 return regex.test(vItem);
               });              
             }
-            menu.data("_autoComplete_api", _this);
-            _this.buildMenu(source);
-            menu.show();
-            menu.offset({
-              left: offset.left,
-              top: offset.top + height
-            });
+            if(source.length > 0){
+              menu.data("_autoComplete_api", _this);
+              _this.buildMenu(source);
+              menu.show();
+              menu.offset({
+                left: offset.left,
+                top: offset.top + height
+              });
+            }
+            else{
+              _this.hideMenu();
+            }
           }
         });
       }
