@@ -185,9 +185,9 @@
       this.current = index;
     };
     /**
-     * 当前选择值
+     * 当前选择项
      */
-    var currentValue;
+    var currentData;
     /**
      * 选择菜单项
      */
@@ -197,7 +197,7 @@
         var source = menu.data("data");
         var item = source[this.current - 1];
         var text = option.displayMember ? item[option.displayMember] : item;
-        currentValue = option.valueMember ? item[option.valueMember] : item;
+        currentData = item;
         $input.val(text);
       }
       this.hideMenu();
@@ -234,7 +234,13 @@
      * 获取当前选择值
      */
     this.getValue = function(){
-      return currentValue;
+      return option.valueMember ? currentData[option.valueMember] : currentData;
+    }
+    /**
+     * 获取当前选择项
+     */
+    this.getData = function(){
+      return currentData;
     }
   };
   $.fn.autoComplete.api.prototype = {};
