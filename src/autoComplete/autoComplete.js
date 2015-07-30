@@ -14,7 +14,7 @@
         $this.data("_autoComplete_api", new $.fn.autoComplete.api(option, $this));
       }
       else if(typeof option == "string"){
-        var api = $this.data("_resizeBox_api");
+        var api = $this.data("_autoComplete_api");
         var method = api[option];
         if(method){
           var args = [];
@@ -22,7 +22,7 @@
             args.push(arguments[i]);
           }
           var res = method.apply(api, args);
-          if(res){
+          if(res != undefined){
             ret = res;
           }
         }
@@ -185,6 +185,10 @@
       this.current = index;
     };
     /**
+     * 当前选择值
+     */
+    var currentValue;
+    /**
      * 选择菜单项
      */
     this.select = function(){
@@ -192,8 +196,9 @@
         var menu = $.fn.autoComplete.getMenu();
         var source = menu.data("data");
         var item = source[this.current - 1];
-        var v = option.displayMember ? item[option.displayMember] : item;
-        $input.val(v);
+        var text = option.displayMember ? item[option.displayMember] : item;
+        currentValue = option.valueMember ? item[option.valueMember] : item;
+        $input.val(text);
       }
       this.hideMenu();
     };
@@ -224,6 +229,13 @@
         _this.checkMenu();
       }
     }).on("blur", _this.hideMenu);
+
+    /**
+     * 获取当前选择值
+     */
+    this.getValue = function(){
+      return currentValue;
+    }
   };
   $.fn.autoComplete.api.prototype = {};
   /**

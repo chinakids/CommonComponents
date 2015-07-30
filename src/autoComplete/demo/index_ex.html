@@ -13,35 +13,34 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
     <script src="../autoComplete.js"></script>
     <script type="text/javascript">
-      var emailSource = ["sina.com", "163.com", "qq.com", "126.com", "vip.sina.com", "sina.cn", "hotmail.com", "gmail.com", "sodu.com", "139.com", "wo.com.cn", "189.cn", "21cn.com"];
+      var emailSource = [
+        {id:0,name:"sina.com"}, 
+        {id:1,name:"163.com"}, 
+        {id:2,name:"qq.com"}, 
+        {id:3,name:"126.com"}, 
+        {id:4,name:"vip.sina.com"}, 
+        {id:5,name:"sina.cn"}, 
+        {id:6,name:"hotmail.com"}, 
+        {id:7,name:"gmail.com"}, 
+        {id:8,name:"sodu.com"}, 
+        {id:9,name:"139.com"}, 
+        {id:10,name:"wo.com.cn"}, 
+        {id:11,name:"189.cn"}, 
+        {id:12,name:"21cn.com"}
+      ];
       /**
        * 邮箱快速选择(自动联想)
        */
       $("#login").autoComplete({
+        displayMember: "name",
+        valueMember: "id",
         //maxHeight: 200,
         minWidth: 250,
-        checkActiveCallback: function(inputValue){
-          return /^[^@\s]+@([^@\s]*)$/.test(inputValue);
-        },
+        minLength: 2,
         getSourceCallback: function(inputValue, e){
-          var m = inputValue.match(/^([^@\s]+@)([^@\s]*)$/);
-          if(m){
-            var v = m[1]
-            var rex = m[2];
-            e.source($.map(emailSource, function(item){
-              if(item.indexOf(rex) == 0){
-                return v + item;
-              }
-            }), false);
-          }        
-        }
-      });
-
-      $("#login").autoComplete({
-        minLength: 1,
-        minWidth: 250,
-        getSourceCallback: function(inputValue, e){
-          e.source(emailSource);
+          window.setTimeout(function(){
+            e.source(emailSource, false);    
+          }, 1000);         
         }
       });
     </script>
