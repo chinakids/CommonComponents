@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var emailSource = ["sina.com", "163.com", "qq.com", "126.com", "vip.sina.com", "sina.cn", "hotmail.com", "gmail.com", "sodu.com", "139.com", "wo.com.cn", "189.cn", "21cn.com"];
       /**
-       * 邮箱快速选择(自动联想)
+       * 邮箱快速选择(自动联想,在输入@后下拉菜单才显示)
        */
       // $("#login").autoComplete({
       //   //maxHeight: 200,
@@ -37,9 +37,13 @@
       //   }
       // });
 
+      /**
+       * 一个最简单的demo
+       */
       $("#login").autoComplete({
         minLength: 1,
         minWidth: 250,
+        title: "请选择邮箱类型",
         getSourceCallback: function(inputValue, e){
           e.source(emailSource);
         }

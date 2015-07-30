@@ -14,7 +14,7 @@
         $this.data("_autoComplete_api", new $.fn.autoComplete.api(option, $this));
       }
       else if(typeof option == "string"){
-        var api = $this.data("_resizeBox_api");
+        var api = $this.data("_autoComplete_api");
         var method = api[option];
         if(method){
           var args = [];
@@ -22,7 +22,7 @@
             args.push(arguments[i]);
           }
           var res = method.apply(api, args);
-          if(res){
+          if(res != undefined){
             ret = res;
           }
         }
@@ -47,6 +47,10 @@
       return e.source([], false);
     },
     /**
+     * 菜单项的title信息
+     */
+    title: undefined,
+    /**
      * 数据源中的显示字段,如果为空就显示数据源的item
      * @type {[string]}
      */
@@ -70,6 +74,11 @@
      * 当输入框内字符串长度达到minLength时，激活Autocomplete
      */
     minLength: 2,
+    /**
+     * 对联想的菜单项做个数限制,最多只能显示maxDataLength条,默认不限制
+     * @type {[type]}
+     */
+    maxDataLength: undefined,
     /**
      * 决定是否激活Autocomplete的一个回调函数,如果设置了这个参数,就会忽略minLength
      * @param  {[string]} inputValue [输入框的值]
@@ -127,9 +136,12 @@
             if(needFilter !== false){
               var regex = new RegExp(v, "i");
               source = $.grep(dataSource, function(item, index){
-                var vItem = option.valueMember ? item[option.valueMember] : item;
+                var vItem = option.displayMember ? item[option.displayMember] : item;
                 return regex.test(vItem);
               });              
+            }
+            if(option.maxDataLength){
+              source.splice(option.maxDataLength, source.length - option.maxDataLength);
             }
             if(source.length > 0){
               menu.data("_autoComplete_api", _this);
@@ -160,7 +172,9 @@
       //设置最小宽度
       option.minWidth ? menu.css("minWidth", option.minWidth + "px") : menu.css("minWidth", "none");
       menu.empty().data("data", source);
-      menu.append($('<div class="head active">请选择邮箱类型</div>'));
+      if(option.title){
+        menu.append($('<div class="head active">' + option.title + '</div>'));
+      }
       //当前激活项是"请选择邮箱类型"就是0;
       this.current = 0;
       for(var i=0; i<source.length; i++){
@@ -185,6 +199,10 @@
       this.current = index;
     };
     /**
+     * 当前选择项
+     */
+    var currentData;
+    /**
      * 选择菜单项
      */
     this.select = function(){
@@ -192,8 +210,9 @@
         var menu = $.fn.autoComplete.getMenu();
         var source = menu.data("data");
         var item = source[this.current - 1];
-        var v = option.displayMember ? item[option.displayMember] : item;
-        $input.val(v);
+        var text = option.displayMember ? item[option.displayMember] : item;
+        currentData = item;
+        $input.val(text);
       }
       this.hideMenu();
     };
@@ -224,6 +243,19 @@
         _this.checkMenu();
       }
     }).on("blur", _this.hideMenu);
+
+    /**
+     * 获取当前选择值
+     */
+    this.getValue = function(){
+      return option.valueMember ? currentData[option.valueMember] : currentData;
+    }
+    /**
+     * 获取当前选择项
+     */
+    this.getData = function(){
+      return currentData;
+    }
   };
   $.fn.autoComplete.api.prototype = {};
   /**
