@@ -71,6 +71,11 @@
      */
     minLength: 2,
     /**
+     * 对联想的菜单项做个数限制,最多只能显示maxDataLength条,默认不限制
+     * @type {[type]}
+     */
+    maxDataLength: undefined,
+    /**
      * 决定是否激活Autocomplete的一个回调函数,如果设置了这个参数,就会忽略minLength
      * @param  {[string]} inputValue [输入框的值]
      * @return {[bool]}       [返回true表示激活,否则不激活]
@@ -127,9 +132,12 @@
             if(needFilter !== false){
               var regex = new RegExp(v, "i");
               source = $.grep(dataSource, function(item, index){
-                var vItem = option.valueMember ? item[option.valueMember] : item;
+                var vItem = option.displayMember ? item[option.displayMember] : item;
                 return regex.test(vItem);
               });              
+            }
+            if(option.maxDataLength){
+              source.splice(option.maxDataLength, source.length - option.maxDataLength);
             }
             if(source.length > 0){
               menu.data("_autoComplete_api", _this);
