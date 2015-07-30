@@ -47,6 +47,10 @@
       return e.source([], false);
     },
     /**
+     * 菜单项的title信息
+     */
+    title: undefined,
+    /**
      * 数据源中的显示字段,如果为空就显示数据源的item
      * @type {[string]}
      */
@@ -168,7 +172,9 @@
       //设置最小宽度
       option.minWidth ? menu.css("minWidth", option.minWidth + "px") : menu.css("minWidth", "none");
       menu.empty().data("data", source);
-      menu.append($('<div class="head active">请选择邮箱类型</div>'));
+      if(option.title){
+        menu.append($('<div class="head active">' + option.title + '</div>'));
+      }
       //当前激活项是"请选择邮箱类型"就是0;
       this.current = 0;
       for(var i=0; i<source.length; i++){

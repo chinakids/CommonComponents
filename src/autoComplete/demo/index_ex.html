@@ -8,7 +8,7 @@
   </head>  
   <body>
     <div style="float:left; width:230px;margin: 30px;">
-      <input id="login" type="text" class="form-control" placeholder="请输入邮箱" maxlength="11">
+      <input id="login" type="text" class="form-control" placeholder="请输入邮箱" >
     </div>
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
     <script src="../autoComplete.js"></script>
@@ -90,9 +90,10 @@
         //至少输入2个字符后触发菜单项
         minLength: 2,
         //菜单项的数据源只能最多5项
-        maxDataLength: 5,
+        maxDataLength: 15,
+        title: "请选择邮箱类型",
         getSourceCallback: function(inputValue, e){
-          e.source(emailSource);    
+          e.source(emailSource);
         }
       });
     </script>
