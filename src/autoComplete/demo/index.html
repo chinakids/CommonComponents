@@ -15,28 +15,31 @@
     <script type="text/javascript">
       var emailSource = ["sina.com", "163.com", "qq.com", "126.com", "vip.sina.com", "sina.cn", "hotmail.com", "gmail.com", "sodu.com", "139.com", "wo.com.cn", "189.cn", "21cn.com"];
       /**
-       * 邮箱快速选择(自动联想)
+       * 邮箱快速选择(自动联想,在输入@后下拉菜单才显示)
        */
-      $("#login").autoComplete({
-        //maxHeight: 200,
-        minWidth: 250,
-        checkActiveCallback: function(inputValue){
-          return /^[^@\s]+@([^@\s]*)$/.test(inputValue);
-        },
-        getSourceCallback: function(inputValue, e){
-          var m = inputValue.match(/^([^@\s]+@)([^@\s]*)$/);
-          if(m){
-            var v = m[1]
-            var rex = m[2];
-            e.source($.map(emailSource, function(item){
-              if(item.indexOf(rex) == 0){
-                return v + item;
-              }
-            }), false);
-          }        
-        }
-      });
+      // $("#login").autoComplete({
+      //   //maxHeight: 200,
+      //   minWidth: 250,
+      //   checkActiveCallback: function(inputValue){
+      //     return /^[^@\s]+@([^@\s]*)$/.test(inputValue);
+      //   },
+      //   getSourceCallback: function(inputValue, e){
+      //     var m = inputValue.match(/^([^@\s]+@)([^@\s]*)$/);
+      //     if(m){
+      //       var v = m[1]
+      //       var rex = m[2];
+      //       e.source($.map(emailSource, function(item){
+      //         if(item.indexOf(rex) == 0){
+      //           return v + item;
+      //         }
+      //       }), false);
+      //     }        
+      //   }
+      // });
 
+      /**
+       * 一个最简单的demo
+       */
       $("#login").autoComplete({
         minLength: 1,
         minWidth: 250,
