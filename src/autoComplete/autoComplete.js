@@ -209,7 +209,7 @@
       if(this.current != 0){
         var menu = $.fn.autoComplete.getMenu();
         var source = menu.data("data");
-        var item = source[this.current - 1];
+        var item = source[this.current];
         var text = option.displayMember ? item[option.displayMember] : item;
         currentData = item;
         $input.val(text);
