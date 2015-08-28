@@ -132,7 +132,7 @@
       if((!option.beforeShowCallback) || option.beforeShowCallback(v) !== false){
         option.getSourceCallback(v, {
           source: function(dataSource, needFilter){
-            var source = dataSource;
+            var source = dataSource || [];
             if(needFilter !== false){
               var regex = new RegExp(v, "i");
               source = $.grep(dataSource, function(item, index){
