@@ -7,7 +7,7 @@
 (function($){
   $.fn.autoComplete = function(option){
     //var $this = $(this);
-    var ret = this;
+    var ret = undefined;
     this.each(function(){
       var $this = $(this);
       if(option == undefined || typeof option == "object"){
@@ -132,7 +132,7 @@
       if((!option.beforeShowCallback) || option.beforeShowCallback(v) !== false){
         option.getSourceCallback(v, {
           source: function(dataSource, needFilter){
-            var source = dataSource;
+            var source = dataSource || [];
             if(needFilter !== false){
               var regex = new RegExp(v, "i");
               source = $.grep(dataSource, function(item, index){
@@ -143,6 +143,7 @@
             if(option.maxDataLength){
               source.splice(option.maxDataLength, source.length - option.maxDataLength);
             }
+            currentData = undefined;
             if(source.length > 0){
               menu.data("_autoComplete_api", _this);
               _this.buildMenu(source);
@@ -176,13 +177,13 @@
         menu.append($('<div class="head active">' + option.title + '</div>'));
       }
       //当前激活项是"请选择邮箱类型"就是0;
-      this.current = 0;
+      this.current = -1;
       for(var i=0; i<source.length; i++){
         var item = source[i];
         var dItem = option.displayMember ? item[option.displayMember] : item;
         menu.append($('<div class="item">' + dItem + '</div>'));
       }
-      this.itemCount = source.length + 1;
+      this.itemCount = source.length;
     };
     /**
      * 设置激活项
@@ -195,7 +196,7 @@
         index += this.itemCount;
       }
       menu.children(".active").removeClass("active");
-      menu.children(":eq(" + index + ")").addClass("active");
+      menu.children(".item:eq(" + index + ")").addClass("active");
       this.current = index;
     };
     /**
@@ -206,14 +207,12 @@
      * 选择菜单项
      */
     this.select = function(){
-      if(this.current != 0){
-        var menu = $.fn.autoComplete.getMenu();
-        var source = menu.data("data");
-        var item = source[this.current - 1];
-        var text = option.displayMember ? item[option.displayMember] : item;
-        currentData = item;
-        $input.val(text);
-      }
+      var menu = $.fn.autoComplete.getMenu();
+      var source = menu.data("data");
+      var item = source[this.current];
+      var text = option.displayMember ? item[option.displayMember] : item;
+      currentData = item;
+      $input.val(text);
       this.hideMenu();
     };
     $input.on("keydown", function(e){
@@ -268,7 +267,7 @@
         .delegate("div.item", "mousedown", function(){
           var api = $.fn.autoComplete.getMenu().data("_autoComplete_api");
           if(api){
-            var index = $(this).index();
+            var index = $(this).index(".item");
             api.setActive(index);
             api.select();
           }
