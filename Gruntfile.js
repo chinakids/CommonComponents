@@ -26,6 +26,7 @@ module.exports = function(grunt) {
   	            },
   	            files: {
   	              	'dest/environment/environment.min.js': ['src/environment/environment.js'],
+                    'dest/autoComplete/autoComplete.min.js': ['src/autoComplete/autoComplete.js'],
                     'dest/core/core.min.js': ['src/core/core.js']
   	            }
   	        }
